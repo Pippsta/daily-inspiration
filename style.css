@@ -1,0 +1,179 @@
+/* =============================================================
+   style.css — the LOOKS of the app.
+   Colors, fonts, spacing, and the centered card.
+   ============================================================= */
+
+/* A few reusable values up top, so you can change the whole
+   look by editing one place. These are "CSS variables". */
+:root {
+  --bg-start: #1e3a5f;
+  --bg-end:   #4a6fa5;
+  --card-bg:  rgba(255, 255, 255, 0.97);
+  --text:     #2b2b2b;
+  --muted:    #6b7280;
+  --accent:   #d6336c;
+  --accent-soft: #fce4ec;
+}
+
+/* Reset default margins and make sizing predictable. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fill the screen with a soft gradient and center the card. */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: Georgia, "Times New Roman", serif;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  color: var(--text);
+}
+
+/* The white card in the middle. */
+.card {
+  background: var(--card-bg);
+  width: 100%;
+  max-width: 620px;
+  padding: 48px 44px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* The date at the top. */
+.date {
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+/* The quote text — the star of the show. */
+.quote {
+  font-size: 1.7rem;
+  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+.quote::before { content: "\201C"; }  /* a curly opening quote */
+.quote::after  { content: "\201D"; }  /* a curly closing quote */
+
+/* Who said it. */
+.source {
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+/* Row of buttons under the quote. */
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The main buttons. */
+.btn {
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.95rem;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 999px;
+  background: var(--bg-start);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+.btn:hover  { background: var(--bg-end); }
+.btn:active { transform: scale(0.96); }
+
+/* The little heart button. */
+.icon-btn {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 1.3rem;
+  padding: 10px 16px;
+  line-height: 1;
+}
+.icon-btn:hover { background: #f8bbd0; }
+.icon-btn.active { background: var(--accent); color: white; }
+
+/* Small text-style links (Back to today, View favorites). */
+.link {
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 24px;
+  text-decoration: underline;
+}
+.link:hover { color: var(--text); }
+
+.footer-nav {
+  margin-top: 8px;
+  border-top: 1px solid #eee;
+}
+
+/* ---- Favorites list ---- */
+.fav-title {
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.fav-list { list-style: none; text-align: left; }
+.fav-item {
+  position: relative;
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 18px 52px 18px 20px;
+  margin-bottom: 12px;
+}
+.fav-item blockquote { font-style: italic; margin-bottom: 6px; }
+.fav-source {
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.fav-remove {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.fav-empty {
+  color: var(--muted);
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ---- Helpers ---- */
+.hidden { display: none; }
+
+/* The fade-in animation used when the quote changes. */
+.fade { animation: fadeIn 0.5s ease; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Make it comfortable on small phone screens. */
+@media (max-width: 480px) {
+  .card  { padding: 32px 24px; }
+  .quote { font-size: 1.35rem; }
+  .actions { flex-direction: column; }
+  .btn { width: 100%; }
+}

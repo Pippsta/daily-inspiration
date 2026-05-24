@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+  index.html — the STRUCTURE of the app (the skeleton).
+  It says WHAT is on the page. style.css says how it looks,
+  and app.js makes it do things.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Inspiration</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="card" id="card">
+    <!-- Today's date appears here -->
+    <p class="date" id="date"></p>
+
+    <!-- The quote view -->
+    <section id="quote-view">
+      <blockquote class="quote" id="quote-text"></blockquote>
+      <p class="source" id="quote-source"></p>
+
+      <div class="actions">
+        <button id="another-btn" class="btn">Show me another</button>
+        <button id="favorite-btn" class="btn icon-btn" title="Mark as favorite">
+          <span id="favorite-icon">♡</span>
+        </button>
+      </div>
+
+      <!-- Only shown after "Show me another"; returns to the daily quote -->
+      <button id="back-btn" class="link hidden">← Back to today's quote</button>
+    </section>
+
+    <!-- The favorites list (hidden until opened) -->
+    <section id="favorites-view" class="hidden">
+      <h2 class="fav-title">Your favorites</h2>
+      <ul id="favorites-list" class="fav-list"></ul>
+      <p id="favorites-empty" class="fav-empty hidden">No favorites yet. Tap the ♡ on a quote you love.</p>
+    </section>
+
+    <!-- Bottom navigation between the quote and favorites -->
+    <nav class="footer-nav">
+      <button id="show-favorites-btn" class="link">View favorites</button>
+      <button id="show-quote-btn" class="link hidden">Back to quote</button>
+    </nav>
+  </main>
+
+  <!-- Load the data first, then the behavior. Order matters:
+       app.js uses the QUOTES list defined in quotes.js. -->
+  <script src="quotes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

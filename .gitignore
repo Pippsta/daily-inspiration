@@ -1,0 +1,9 @@
+# Editor / tooling config (not needed for the live site)
+.claude/
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# Temp files
+_*.js
